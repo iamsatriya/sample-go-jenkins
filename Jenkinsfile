@@ -3,7 +3,7 @@ pipeline{
     environment {
         root = "/usr/local/go/bin/go"
         branch = "master"
-        scmUrl =  "https://github.com/jutionck/sample-go-jenkins.git"
+        scmUrl =  "https://github.com/iamsatriya/sample-go-jenkins.git"
     }
     stages {
         stage("Go Version") {
