@@ -1,29 +1,15 @@
 pipeline{
     agent any
-    environment {
-        root = "/usr/local/go/bin/go"
-        branch = "master"
-        scmUrl =  "https://github.com/iamsatriya/sample-go-jenkins.git"
-    }
-    stages {
-        stage("Go Version") {
-            steps {
-                sh "${root} version"
+    stages{
+        stage("Build & Test"){
+            agent {
+                docker {
+                    image 'golang:alpine'
+                }
             }
-        }
-        stage("Git Clone") {
-            steps {
-                git branch: "${branch}", url: "${scmUrl}"
-            }
-        }
-        stage("Go Test") {
-            steps {
-                sh "${root} test ./... -cover"
-            }
-        }
-        stage("Go Build") {
-            steps {
-                sh "${root} build ./..."
+            steps{
+                echo "========Build and Test========"
+                sh 'go version'
             }
         }
     }
